@@ -4,14 +4,13 @@ FROM node:latest
 # Set the working directory in the container
 WORKDIR /usr/src/app
 
-# Copy package.json and package-lock.json to the working directory
+# Copy package.json and to the working directory
 
 COPY . .
 
 # Install app dependencies
 RUN npm install
 
-# Bundle app source
 
 # Expose port 3000 (or the port your app is listening on)
 EXPOSE 3000
