@@ -7,11 +7,11 @@ Check_Connection=true
 
 # Loop through each local IP address
 for ip in "${local_ips[@]}"; do
-    # Ping the local IP address and suppress output
-    if ! ping -c 1 "$ip" &> Log; then
-        # If ping fails, set flag to false and break out of loop
+    # Ping the local IP addresses.
+    if ! ping -c 1 "$ip" &>/dev/null; then
+        # If ping fails, set flag to false.
         Check_Connection=false
-        break
+        echo "Service is not available: $ip" >> Log
     fi
 done
 
@@ -19,6 +19,6 @@ done
 if $Check_Connection; then
     echo "Connection with the application is established."
 else
-    echo "There is no connection with the application."
+    echo "The application is not connected to all external services."
     echo "See more details in the Log file."
 fi
