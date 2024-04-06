@@ -8,10 +8,10 @@ Check_Connection=true
 # Loop through each local IP address
 for ip in "${local_ips[@]}"; do
     # Ping the local IP addresses.
-    if ! ping -c 1 "$ip" &>/dev/null; then
+    if ! arping -c 1 "$ip" &>/dev/null; then
         # If ping fails, set flag to false.
         Check_Connection=false
-        echo "Service is not available: $ip" >> Log
+        echo "Service is not available: $ip"
     fi
 done
 
